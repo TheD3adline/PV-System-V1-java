@@ -10,6 +10,13 @@ public class UserInput {
 
     private static final Scanner sc = new Scanner(System.in);
 
+    /**
+     * Method to get user input as integer, includes validity check and console messages.
+     * @param messages given String array wih console messages.
+     * @param cLow given lower constraint, any input below this number will trigger error message and new loop.
+     * @param cHigh given higher constraint, any input above this number will trigger error message and new loop.
+     * @return integer if all validity checks (data type and constraints) have been cleared.
+     */
     public static int getInput(String[] messages, int cLow, int cHigh) {
         int num;
         do {
