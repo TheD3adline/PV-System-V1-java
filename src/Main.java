@@ -46,13 +46,11 @@ public class Main {
 
     //to properly format floats according to assignment
     static DecimalFormat df2 = new DecimalFormat();
-    static DecimalFormat df3 = new DecimalFormat();
 
     public static void main(String[] args) {
 
         //set decimal format objects to given task, to display either 2 or 3 digits after floating point
         df2.setMaximumFractionDigits(2);
-        df3.setMaximumFractionDigits(3);
 
         //getInput() method calls to assign values to variables for calculation
         modules = UserInput.getInput(modulesText, modulesConst[0], modulesConst[1]);
@@ -67,10 +65,10 @@ public class Main {
             System.out.println(modules + " modules facing " + direction[bearing - 1]);
 
         //calculates power output based on number of panels and the direction they are facing, then prints to console
-        achievedPower = peakPower * modules * ((float) utilization[bearing] / 100);
-        System.out.println("Achievable total power: " + df3.format(peakPower * modules) + "kWp.");
+        achievedPower = peakPower * modules * ((float) utilization[bearing - 1] / 100);
+        System.out.println("Achievable total power: " + df2.format(peakPower * modules) + "kWp.");
         if(bearing != 1)
-            System.out.println("However, due to the suboptimal direction, only " + df3.format(achievedPower) +
+            System.out.println("However, due to the suboptimal direction, only " + df2.format(achievedPower) +
                                 " kWp are achieved.");
 
         //calculations for yearly power output, investment in € for the panels,
@@ -79,7 +77,7 @@ public class Main {
         investment = modules * cost;
         earnings = Y * rate;
         remCosts = investment;
-        yearlySubsidy = ((earnings / 100) / 100) * subsidy;
+        yearlySubsidy = (investment / 100) * subsidy;
 
         System.out.println("Investment of €" + df2.format(investment) + " leads to earnings of €" +
                             df2.format(earnings / 100) + " each year.");
